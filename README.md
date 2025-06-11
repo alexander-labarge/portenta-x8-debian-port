@@ -50,10 +50,27 @@ All scripts enforce host-sanity checks, use cross-compilation toolchains (includ
 ### Repository Layout
 
 ```bash
+# In the `cross_compile_builders_amd64_for_arm64` directory:
 .
-├── build_mediamtx_arm64_static.sh   # Static build script for MediaMTX
-├── build_ffmpeg_arm64_static.sh     # Static build script for FFmpeg + x265
-└── deploy_static_binaries.sh        # SSH-based deployer to Portenta X8
+├── build_mediamtx_arm64_static.sh       # Static build script for MediaMTX
+├── build_ffmpeg_arm64_static.sh         # Static build script for FFmpeg + x265
+├── deploy_static_binaries.sh            # SSH-based deployer to Portenta X8
+├── ffmpeg-arm64-static
+│   ├── bin
+│   │   └── ffmpeg
+│   ├── include
+│   │   ├── x265_config.h
+│   │   └── x265.h
+│   └── lib
+│       ├── libx265.a
+│       └── pkgconfig
+│           └── x265.pc
+└── mediamtx-arm64-static
+    └── bin
+        └── mediamtx
+
+8 directories, 9 files
+
 ````
 
 ### Prerequisites
