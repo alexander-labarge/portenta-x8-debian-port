@@ -4,3 +4,5 @@ musl-cross/
 musl-cross/*
 x265/
 x265/*
+mediamtx/
+mediamtx/*
