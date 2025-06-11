@@ -1,0 +1,12 @@
+prefix=/home/skywalker/programming/portenta-x8-debian-port/debian_arm64_chroot_builder/cross_compile_builders_amd64_for_arm64/ffmpeg-arm64-static
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+Name: x265
+Description: H.265/HEVC encoder (static)
+Version: 3.6
+
+# static link flags include C++ runtime, math, pthread
+Libs: -L${libdir} -lx265 -lstdc++ -lm -lpthread
+Cflags: -I${includedir}

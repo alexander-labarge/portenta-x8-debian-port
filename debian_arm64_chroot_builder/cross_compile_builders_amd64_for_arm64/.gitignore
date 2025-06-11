@@ -1,0 +1,6 @@
+ffmpeg/*
+ffmpeg/
+musl-cross/
+musl-cross/*
+x265/
+x265/*
