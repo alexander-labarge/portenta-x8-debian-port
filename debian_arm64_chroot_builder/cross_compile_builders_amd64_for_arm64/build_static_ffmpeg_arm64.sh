@@ -19,7 +19,9 @@ source /etc/lsb-release
 say "Installing build dependencies"
 sudo apt-get -qq update
 sudo apt-get -qq install --yes --no-install-recommends \
-  build-essential git pkg-config yasm nasm cmake wget xz-utils
+  build-essential git pkg-config yasm nasm cmake ninja-build \
+  autoconf automake libtool gettext autopoint wget curl xz-utils \
+  crossbuild-essential-arm64 qemu-user-static ca-certificates
 
 # ── 3. musl tool-chain (brings static libc) ─────────────────────────────────
 MUSL_URL="https://musl.cc/aarch64-linux-musl-cross.tgz"
@@ -83,7 +85,7 @@ else
   die "Static link sanity check failed"
 fi
 
-# ── 8. Build FFmpeg (100% static) ───────────────────────────────────────────
+# ── 8. Build FFmpeg (100 % static) ──────────────────────────────────────────
 say "Building FFmpeg"
 git clone --quiet --depth 1 https://git.ffmpeg.org/ffmpeg.git
 pushd ffmpeg > /dev/null
