@@ -16,7 +16,6 @@ echo "[*] Creating target directory ${ROOTFS_DIR}"
 mkdir -p "${ROOTFS_DIR}"
 
 echo "[*] Finding latest rootfs.tar.xz under ${BASE_URL}"
-# BusyBox wget prints page to stdout with -O -
 LATEST_DIR=$(wget -qO- "${BASE_URL}/" \
   | grep -o '[0-9]\{8\}_[0-9]\{2\}:[0-9]\{2\}' \
   | sort | tail -n1)
@@ -37,7 +36,10 @@ xzcat "${TMP}" | tar -xf - -C "${ROOTFS_DIR}"
 rm -f "${TMP}"
 
 echo "[*] Copying DNS resolver"
-cp /etc/resolv.conf "${ROOTFS_DIR}/etc/"
+# remove any existing file (or symlink) to avoid “same file” errors
+rm -f "${ROOTFS_DIR}/etc/resolv.conf"
+# write a fresh copy
+cat /etc/resolv.conf > "${ROOTFS_DIR}/etc/resolv.conf"
 
 echo "[*] Writing HTTP APT mirrors"
 cat > "${ROOTFS_DIR}/etc/apt/sources.list" <<EOF
