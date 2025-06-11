@@ -16,7 +16,7 @@ CHROOT_SH="$SELF_DIR/chroot_debian_rootfs.sh"
 
 ROOTFS="/opt/bookworm-rootfs"
 MEDI_BIN_OUT="/usr/local/bin/mediamtx"
-GO_VER="1.22.3"
+GO_VER="1.24.4" # latest at the time of writing - TODO: Automate this to find latest version
 GO_URL="https://go.dev/dl/go${GO_VER}.linux-arm64.tar.gz"
 
 [ -x "$CHROOT_SH" ] || { echo "ERROR: $CHROOT_SH not found"; exit 1; }
@@ -83,7 +83,7 @@ echo "[OK] Static mediamtx installed:"
 "$MEDI_BIN_OUT" --version || true
 
 ##############################################################################
-# 6. PATH hint for non-login sudo shells
+# 6. PATH Troubleshooting for non-login sudo shells
 ##############################################################################
 echo
 echo "NOTE: If 'mediamtx' is still not found in non-login shells (e.g. 'sudo su'),"
